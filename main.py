@@ -620,7 +620,7 @@ class SyntaxFixer(tk.Tk):
         about_text = """SyntaxFixer - Code Editor
         
         
-Team Name: TECH TITANS
+Author: Mohiadeen Shifaul Kareem MI
 Version: 1.0
 Description: A modern code editor with advanced
 auto-correction, syntax highlighting, and intelligent
