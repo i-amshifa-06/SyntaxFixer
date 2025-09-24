@@ -668,4 +668,27 @@ Space/Enter - Auto-correct words and function calls"""
 
 if __name__ == "__main__":
     app = SyntaxFixer()
+
+    # If user gave a file name, open it
+    if len(sys.argv) > 1:
+        filepath = sys.argv[1]
+        if os.path.exists(filepath):
+            try:
+                with open(filepath, "r", encoding="utf-8") as f:
+                    content = f.read()
+                app.text.delete(1.0, tk.END)
+                app.text.insert(tk.END, content)
+                app.filename = filepath
+                app.unsaved_changes = False
+                app.title(f"AutoSyntaxPy - {os.path.basename(filepath)}")
+                app.update_status_bar()
+                app.update_line_numbers()
+                app.highlight_syntax()
+            except Exception as e:
+                messagebox.showerror("Error", f"Failed to open {filepath}:\n{e}")
+        else:
+            # If file doesn’t exist, set name so saving will create it
+            app.filename = filepath
+            app.title(f"SyntaxFixer - {os.path.basename(filepath)}")
+
     app.mainloop()
